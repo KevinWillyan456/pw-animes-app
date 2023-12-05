@@ -1,0 +1,19 @@
+.rodape {
+    width: 100%;
+    background-color: var(--color-base-6);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px 0;
+}
+.rodape .title {
+    font-size: 24px;
+    color: var(--color-base-1);
+    margin-bottom: 5px;
+}
+.rodape .subtitle {
+    font-size: 16px;
+    color: var(--color-white);
+}

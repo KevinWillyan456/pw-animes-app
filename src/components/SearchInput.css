@@ -1,0 +1,38 @@
+.pesquisa {
+    width: 100%;
+    color: var(--color-white);
+    padding: 10px 20px;
+    background-color: #222;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+.pesquisa form {
+    display: flex;
+    width: 100%;
+}
+.pesquisa form button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: inherit;
+    display: flex;
+    cursor: pointer;
+    font-size: 30px;
+}
+.pesquisa form .icon {
+    font-size: 30px;
+}
+.pesquisa form input {
+    width: 100%;
+    color: var(--color-white);
+    font-size: 20px;
+    background-color: #222;
+    padding-left: 10px;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
