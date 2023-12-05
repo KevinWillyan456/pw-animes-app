@@ -19,31 +19,26 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import Header from "./components/Header";
-import { Main } from "./components/Main";
-import { Footer } from "./components/Footer";
+import "./theme/global.css";
 import { Route } from "react-router";
 import { Anime } from "./pages/Anime";
+import Home from "./pages/Home";
 
 setupIonicReact();
 
 const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path="/">
-          <>
-            <Header />
-            <Main />
-            <Footer />
-          </>
-        </Route>
-        <Route path="/anime/:id">
-          <Anime />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
+    <IonApp>
+        <IonReactRouter>
+            <IonRouterOutlet>
+                <Route path="/">
+                    <Home />
+                </Route>
+                <Route path="/anime/:id">
+                    <Anime />
+                </Route>
+            </IonRouterOutlet>
+        </IonReactRouter>
+    </IonApp>
 );
 
 export default App;

@@ -1,5 +1,5 @@
 {
-  "name": "ionic-app",
+  "name": "pw-animes",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "test.e2e": "cypress run",
     "test.unit": "vitest",
-    "lint": "eslint"
+    "lint": "eslint",
+    "aplication:build": "ionic cap sync && ionic cap build android --no-open",
+    "aplication:apk": "cd android && ./gradlew assembleDebug && cd .."
   },
   "dependencies": {
     "@capacitor/android": "5.5.1",

@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import './SearchInput.css'
-import { AiOutlineSearch } from 'react-icons/ai'
+import { useState } from "react";
+import "./SearchInput.css";
+import { AiOutlineSearch } from "react-icons/ai";
 
 export function SearchInput() {
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState("");
 
     const handleSubmit = (e: any) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        if (!search) return
+        if (!search) return;
 
-        setSearch('')
-    }
+        setSearch("");
+    };
 
     return (
         <div className="pesquisa">
@@ -27,5 +27,5 @@ export function SearchInput() {
                 />
             </form>
         </div>
-    )
+    );
 }

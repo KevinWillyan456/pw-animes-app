@@ -1,31 +1,30 @@
-import { useState } from 'react'
-import { GiHamburgerMenu } from 'react-icons/gi'
-import { AiOutlineClose } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
-import { SearchInput } from './SearchInput'
+import { useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { AiOutlineClose } from "react-icons/ai";
+import { SearchInput } from "./SearchInput";
 
-import './Header.css'
+import "./Header.css";
 
 export default function Header() {
-    const [mostrarMenu, setMostrarMenu] = useState(false)
+    const [mostrarMenu, setMostrarMenu] = useState(false);
 
     const handleClick = () => {
-        setMostrarMenu(!mostrarMenu)
-    }
+        setMostrarMenu(!mostrarMenu);
+    };
 
     return (
         <>
             <header className="cabecalho">
-                <Link to={'/'}>
+                <a href="/">
                     <div className="logo">
                         <div className="part-1">Pw</div>
                         <div className="part-2">Animes</div>
                     </div>
-                </Link>
+                </a>
                 <nav className="navbar">
                     <ul className="navbar-ul">
                         <li>
-                            <Link to={'/'}>Início</Link>
+                            <a href="/">Início</a>
                         </li>
                         <li>
                             <a href="#">Lista de Animes</a>
@@ -57,9 +56,9 @@ export default function Header() {
 
                             <ul className="navbar-ul-mobile">
                                 <li>
-                                    <Link onClick={handleClick} to={'/'}>
+                                    <a onClick={handleClick} href="/">
                                         Início
-                                    </Link>
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="#">Lista de Animes</a>
@@ -83,5 +82,5 @@ export default function Header() {
             </header>
             <SearchInput />
         </>
-    )
+    );
 }

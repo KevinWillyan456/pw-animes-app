@@ -1,9 +1,6 @@
 .container-animes {
     width: 100%;
-    min-height: calc(100vh - 298px);
-    height: calc(100vh - 298px);
-    overflow-y: auto;
-
+    min-height: calc(100vh - 248px);
 }
 .container-animes .content-animes {
     padding: 20px;

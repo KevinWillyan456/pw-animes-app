@@ -11,9 +11,10 @@
 .rodape .title {
     font-size: 24px;
     color: var(--color-base-1);
-    margin-bottom: 5px;
+    margin: 0 0 5px 0;
 }
 .rodape .subtitle {
     font-size: 16px;
     color: var(--color-white);
+    margin: 0;
 }

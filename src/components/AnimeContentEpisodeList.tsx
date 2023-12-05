@@ -14,5 +14,5 @@ export function AnimeContentEpisodeList({
                 </button>
             </li>
         </>
-    )
+    );
 }
