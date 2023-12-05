@@ -23,6 +23,7 @@ import "./theme/global.css";
 import { Route } from "react-router";
 import { Anime } from "./pages/Anime";
 import Home from "./pages/Home";
+import Search from "./pages/Search";
 
 setupIonicReact();
 
@@ -35,6 +36,9 @@ const App: React.FC = () => (
                 </Route>
                 <Route path="/anime/:id">
                     <Anime />
+                </Route>
+                <Route path="/search">
+                    <Search />
                 </Route>
             </IonRouterOutlet>
         </IonReactRouter>
