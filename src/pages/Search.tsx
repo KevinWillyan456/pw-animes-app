@@ -5,9 +5,11 @@ import { MainSearch } from "../components/MainSearch";
 function Search() {
     return (
         <>
-            <Header />
-            <MainSearch />
-            <Footer />
+            <section className="search-container">
+                <Header />
+                <MainSearch />
+                <Footer />
+            </section>
         </>
     );
 }
