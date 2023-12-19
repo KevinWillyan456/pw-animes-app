@@ -2,10 +2,15 @@ import { useEffect, useRef } from "react";
 import { useState } from "react";
 import "./AnimeContent.css";
 import { AnimeContentEpisodeList } from "./AnimeContentEpisodeList";
+import StorageService from "../utils/StorageService";
+
+const storageService = new StorageService();
 
 export function AnimeContent({ anime }: any) {
-    const [episode, setEpisode] = useState(1);
-    const [indexEpisode, setIndexEpisode] = useState(0);
+    const [episode, setEpisode] = useState(storageService.read(anime.id + 1));
+    const [indexEpisode, setIndexEpisode] = useState(
+        storageService.read(anime.id)
+    );
     const [selectedEpisode, setSelectedEpisode] = useState(1);
     const loadRef = useRef<any>(null);
     const episodeIndicatorRef = useRef<any>(null);
@@ -46,6 +51,7 @@ export function AnimeContent({ anime }: any) {
 
     useEffect(() => {
         setEpisode(anime.episodios[indexEpisode].episodioId);
+        storageService.create(anime.id, indexEpisode);
     }, [indexEpisode]);
 
     const handlePreviousEpisode = () => {
