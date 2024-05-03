@@ -1,6 +1,6 @@
-import Header from "../components/Header";
-import { Main } from "../components/Main";
-import { Footer } from "../components/Footer";
+import Header from '../components/Header'
+import { Main } from '../components/Main'
+import { Footer } from '../components/Footer'
 
 function Home() {
     return (
@@ -11,7 +11,7 @@ function Home() {
                 <Footer />
             </section>
         </>
-    );
+    )
 }
 
-export default Home;
+export default Home

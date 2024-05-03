@@ -1,4 +1,4 @@
-import "./Footer.css";
+import './Footer.css'
 
 export function Footer() {
     return (
@@ -8,5 +8,5 @@ export function Footer() {
                 <h2 className="subtitle">Todos os direitos reservados</h2>
             </footer>
         </>
-    );
+    )
 }

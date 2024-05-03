@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
-import "./Card.css";
+import './Card.css'
 
 export function Card({ anime }: any) {
     return (
@@ -12,7 +12,7 @@ export function Card({ anime }: any) {
                 <div className="card-title">{anime.nome}</div>
             </div>
         </a>
-    );
+    )
 }
 
 Card.propTypes = {
@@ -20,4 +20,4 @@ Card.propTypes = {
         urlCapa: PropTypes.string.isRequired,
         nome: PropTypes.string.isRequired,
     }).isRequired,
-};
+}

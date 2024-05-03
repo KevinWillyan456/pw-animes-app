@@ -1,6 +1,6 @@
-import { Footer } from "../components/Footer";
-import Header from "../components/Header";
-import { MainSearch } from "../components/MainSearch";
+import { Footer } from '../components/Footer'
+import Header from '../components/Header'
+import { MainSearch } from '../components/MainSearch'
 
 function Search() {
     return (
@@ -11,7 +11,7 @@ function Search() {
                 <Footer />
             </section>
         </>
-    );
+    )
 }
 
-export default Search;
+export default Search

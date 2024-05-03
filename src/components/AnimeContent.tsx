@@ -1,70 +1,70 @@
-import { useEffect, useRef } from "react";
-import { useState } from "react";
-import "./AnimeContent.css";
-import { AnimeContentEpisodeList } from "./AnimeContentEpisodeList";
-import StorageService from "../utils/StorageService";
+import { useEffect, useRef } from 'react'
+import { useState } from 'react'
+import './AnimeContent.css'
+import { AnimeContentEpisodeList } from './AnimeContentEpisodeList'
+import StorageService from '../utils/StorageService'
 
-const storageService = new StorageService();
+const storageService = new StorageService()
 
 export function AnimeContent({ anime }: any) {
-    const [episode, setEpisode] = useState(storageService.read(anime.id + 1));
+    const [episode, setEpisode] = useState(storageService.read(anime.id + 1))
     const [indexEpisode, setIndexEpisode] = useState(
         storageService.read(anime.id)
-    );
-    const [selectedEpisode, setSelectedEpisode] = useState(1);
-    const loadRef = useRef<any>(null);
-    const episodeIndicatorRef = useRef<any>(null);
+    )
+    const [selectedEpisode, setSelectedEpisode] = useState(1)
+    const loadRef = useRef<any>(null)
+    const episodeIndicatorRef = useRef<any>(null)
 
-    const totalEpisodes = anime.episodios.length;
+    const totalEpisodes = anime.episodios.length
 
     const gerenciarEpisodioTela = () => {
-        const episodios = anime.episodios;
+        const episodios = anime.episodios
         const episodioEncontrado =
             episodios.find((episodio: any) => episodio.episodioId == episode) ||
-            episodios[0];
+            episodios[0]
         if (loadRef.current) {
-            loadRef.current.innerHTML = `<iframe src="https://drive.google.com/file/d/${episodioEncontrado.episodioUrl}/preview" width="640" height="480" allow="autoplay" allowfullscreen="allowfullscreean"></iframe>`;
+            loadRef.current.innerHTML = `<iframe src="https://drive.google.com/file/d/${episodioEncontrado.episodioUrl}/preview" width="640" height="480" allow="autoplay" allowfullscreen="allowfullscreean"></iframe>`
 
             if (!isNaN(episode) && episode < 10) {
-                const formattedEpisode = episode.toString().padStart(2, "0");
-                episodeIndicatorRef.current.textContent = `EP ${formattedEpisode}`;
+                const formattedEpisode = episode.toString().padStart(2, '0')
+                episodeIndicatorRef.current.textContent = `EP ${formattedEpisode}`
             } else {
-                episodeIndicatorRef.current.textContent = `EP ${episode}`;
+                episodeIndicatorRef.current.textContent = `EP ${episode}`
             }
         }
-    };
+    }
 
     const gerenciarEpisodioButton = (episodio: any) => {
-        setEpisode(episodio.episodioId);
+        setEpisode(episodio.episodioId)
         setIndexEpisode(
             anime.episodios.findIndex(
                 (objeto: any) => objeto.episodioId === episodio.episodioId
             )
-        );
-        setSelectedEpisode(episodio.episodioId);
-    };
+        )
+        setSelectedEpisode(episodio.episodioId)
+    }
 
     useEffect(() => {
-        gerenciarEpisodioTela();
-        setSelectedEpisode(episode);
-    }, [episode]);
+        gerenciarEpisodioTela()
+        setSelectedEpisode(episode)
+    }, [episode])
 
     useEffect(() => {
-        setEpisode(anime.episodios[indexEpisode].episodioId);
-        storageService.create(anime.id, indexEpisode);
-    }, [indexEpisode]);
+        setEpisode(anime.episodios[indexEpisode].episodioId)
+        storageService.create(anime.id, indexEpisode)
+    }, [indexEpisode])
 
     const handlePreviousEpisode = () => {
         if (indexEpisode > 0) {
-            setIndexEpisode(indexEpisode - 1);
+            setIndexEpisode(indexEpisode - 1)
         }
-    };
+    }
 
     const handleNextEpisode = () => {
         if (indexEpisode < totalEpisodes - 1) {
-            setIndexEpisode(indexEpisode + 1);
+            setIndexEpisode(indexEpisode + 1)
         }
-    };
+    }
 
     return (
         <>
@@ -90,7 +90,7 @@ export function AnimeContent({ anime }: any) {
 
             <div className="actionButtons">
                 <button
-                    className={`prev ${indexEpisode <= 0 ? "forbidden" : ""}`}
+                    className={`prev ${indexEpisode <= 0 ? 'forbidden' : ''}`}
                     onClick={handlePreviousEpisode}
                     disabled={indexEpisode === 0}
                 >
@@ -98,7 +98,7 @@ export function AnimeContent({ anime }: any) {
                 </button>
                 <button
                     className={`next ${
-                        indexEpisode === totalEpisodes - 1 ? "forbidden" : ""
+                        indexEpisode === totalEpisodes - 1 ? 'forbidden' : ''
                     }`}
                     onClick={handleNextEpisode}
                     disabled={indexEpisode === totalEpisodes - 1}
@@ -112,8 +112,8 @@ export function AnimeContent({ anime }: any) {
                     {anime.episodios.map((episodio: any) => {
                         const buttonClass =
                             episodio.episodioId === selectedEpisode
-                                ? "selected"
-                                : "";
+                                ? 'selected'
+                                : ''
 
                         return (
                             <AnimeContentEpisodeList
@@ -124,10 +124,10 @@ export function AnimeContent({ anime }: any) {
                                     gerenciarEpisodioButton
                                 }
                             />
-                        );
+                        )
                     })}
                 </ul>
             </div>
         </>
-    );
+    )
 }

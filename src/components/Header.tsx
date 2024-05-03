@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { AiOutlineClose } from "react-icons/ai";
-import { SearchInput } from "./SearchInput";
+import { useState } from 'react'
+import { GiHamburgerMenu } from 'react-icons/gi'
+import { AiOutlineClose } from 'react-icons/ai'
+import { SearchInput } from './SearchInput'
 
-import "./Header.css";
+import './Header.css'
 
 export default function Header() {
-    const [mostrarMenu, setMostrarMenu] = useState(false);
+    const [mostrarMenu, setMostrarMenu] = useState(false)
 
     const handleClick = () => {
-        setMostrarMenu(!mostrarMenu);
-    };
+        setMostrarMenu(!mostrarMenu)
+    }
 
     return (
         <>
@@ -82,5 +82,5 @@ export default function Header() {
             </header>
             <SearchInput />
         </>
-    );
+    )
 }

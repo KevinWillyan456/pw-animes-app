@@ -1,45 +1,45 @@
-import { useEffect, useState } from "react";
-import { Card } from "./Card";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import { Card } from './Card'
+import { useLocation } from 'react-router-dom'
 
 export function MainSearch() {
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
+    const location = useLocation()
+    const searchParams = new URLSearchParams(location.search)
 
-    const [animes, setAnimes] = useState([]);
-    const [query] = useState(searchParams.get("q"));
+    const [animes, setAnimes] = useState([])
+    const [query] = useState(searchParams.get('q'))
 
     const getSearchedAnimes = async (url: any) => {
-        const res = await fetch(url);
-        const data = await res.json();
+        const res = await fetch(url)
+        const data = await res.json()
 
-        if (!query) return;
+        if (!query) return
 
         const dataSerched = data.filter((anime: any) => {
-            return anime.nome.toLowerCase().includes(query.toLowerCase());
-        });
+            return anime.nome.toLowerCase().includes(query.toLowerCase())
+        })
 
         dataSerched.sort((a: any, b: any) => {
-            const nomeA = a.nome.toUpperCase();
-            const nomeB = b.nome.toUpperCase();
+            const nomeA = a.nome.toUpperCase()
+            const nomeB = b.nome.toUpperCase()
 
             if (nomeA < nomeB) {
-                return -1;
+                return -1
             }
             if (nomeA > nomeB) {
-                return 1;
+                return 1
             }
-            return 0;
-        });
+            return 0
+        })
 
-        setAnimes(dataSerched);
-    };
+        setAnimes(dataSerched)
+    }
 
     useEffect(() => {
         const searchWithQueryURL =
-            "https://pw-animes-react-database.kevinsouza456.repl.co/animes";
-        getSearchedAnimes(searchWithQueryURL);
-    }, [query]);
+            'https://pw-animes-react-database.kevinsouza456.repl.co/animes'
+        getSearchedAnimes(searchWithQueryURL)
+    }, [query])
 
     return (
         <>
@@ -63,5 +63,5 @@ export function MainSearch() {
                 </div>
             </section>
         </>
-    );
+    )
 }
