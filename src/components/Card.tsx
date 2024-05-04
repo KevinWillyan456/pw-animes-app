@@ -4,7 +4,7 @@ import './Card.css'
 
 export function Card({ anime }: any) {
     return (
-        <a href={`/anime/${anime.id}`}>
+        <a href={`/anime/${anime._id}`}>
             <div className="card">
                 <div className="card-img">
                     <img src={anime.urlCapa} />

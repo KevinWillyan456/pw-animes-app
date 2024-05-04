@@ -37,8 +37,6 @@ export function MainSearch() {
     }
 
     useEffect(() => {
-        // const searchWithQueryURL =
-        //     'https://pw-animes-react-database.kevinsouza456.repl.co/animes'
         getSearchedAnimes('/animes')
     }, [query])
 

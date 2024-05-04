@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 import { Card } from './Card'
 import './Main.css'
 import api from '../services/Api'
+import { IAnime } from '../types/Anime'
 
 export function Main() {
-    const [animes, setAnimes] = useState([])
+    const [animes, setAnimes] = useState<IAnime[]>([])
 
     const getAnimes = async (url: any) => {
         const res = await api.get(url)

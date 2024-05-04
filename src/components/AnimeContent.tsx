@@ -3,13 +3,14 @@ import { useState } from 'react'
 import './AnimeContent.css'
 import { AnimeContentEpisodeList } from './AnimeContentEpisodeList'
 import StorageService from '../utils/StorageService'
+import { IAnime, IEpisodios } from '../types/Anime'
 
 const storageService = new StorageService()
 
-export function AnimeContent({ anime }: any) {
-    const [episode, setEpisode] = useState(storageService.read(anime.id + 1))
+export function AnimeContent({ anime }: { anime: IAnime }) {
+    const [episode, setEpisode] = useState(storageService.read(anime._id + 1))
     const [indexEpisode, setIndexEpisode] = useState(
-        storageService.read(anime.id)
+        storageService.read(anime._id)
     )
     const [selectedEpisode, setSelectedEpisode] = useState(1)
     const loadRef = useRef<any>(null)
@@ -20,8 +21,9 @@ export function AnimeContent({ anime }: any) {
     const gerenciarEpisodioTela = () => {
         const episodios = anime.episodios
         const episodioEncontrado =
-            episodios.find((episodio: any) => episodio.episodioId == episode) ||
-            episodios[0]
+            episodios.find(
+                (episodio: IEpisodios) => episodio.episodioNumero == episode
+            ) || episodios[0]
         if (loadRef.current) {
             loadRef.current.innerHTML = `<iframe src="https://drive.google.com/file/d/${episodioEncontrado.episodioUrl}/preview" width="640" height="480" allow="autoplay" allowfullscreen="allowfullscreean"></iframe>`
 
@@ -34,14 +36,15 @@ export function AnimeContent({ anime }: any) {
         }
     }
 
-    const gerenciarEpisodioButton = (episodio: any) => {
-        setEpisode(episodio.episodioId)
+    const gerenciarEpisodioButton = (episodio: IEpisodios) => {
+        setEpisode(episodio.episodioNumero)
         setIndexEpisode(
             anime.episodios.findIndex(
-                (objeto: any) => objeto.episodioId === episodio.episodioId
+                (objeto: IEpisodios) =>
+                    objeto.episodioNumero === episodio.episodioNumero
             )
         )
-        setSelectedEpisode(episodio.episodioId)
+        setSelectedEpisode(episodio.episodioNumero)
     }
 
     useEffect(() => {
@@ -50,8 +53,8 @@ export function AnimeContent({ anime }: any) {
     }, [episode])
 
     useEffect(() => {
-        setEpisode(anime.episodios[indexEpisode].episodioId)
-        storageService.create(anime.id, indexEpisode)
+        setEpisode(anime.episodios[indexEpisode].episodioNumero)
+        storageService.create(anime._id, indexEpisode)
     }, [indexEpisode])
 
     const handlePreviousEpisode = () => {
@@ -64,6 +67,15 @@ export function AnimeContent({ anime }: any) {
         if (indexEpisode < totalEpisodes - 1) {
             setIndexEpisode(indexEpisode + 1)
         }
+    }
+
+    const classificacaoIndicativa: { [key: string]: string } = {
+        L: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/DJCTQ_-_L.svg/443px-DJCTQ_-_L.svg.png',
+        10: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/DJCTQ_-_10.svg/1024px-DJCTQ_-_10.svg.png',
+        12: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/DJCTQ_-_12.svg/400px-DJCTQ_-_12.svg.png',
+        14: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/DJCTQ_-_14.svg/400px-DJCTQ_-_14.svg.png',
+        16: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/DJCTQ_-_16.svg/400px-DJCTQ_-_16.svg.png',
+        18: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/DJCTQ_-_18.svg/400px-DJCTQ_-_18.svg.png',
     }
 
     return (
@@ -79,8 +91,12 @@ export function AnimeContent({ anime }: any) {
                 </div>
                 <div className="age">
                     <img
-                        src={`https://purchaseway-animes-node.kevinsouza456.repl.co/resources/img/age-${anime.classificacaoIndicativa}.png`}
-                        alt="age"
+                        src={
+                            classificacaoIndicativa[
+                                anime.classificacaoIndicativa
+                            ]
+                        }
+                        alt="Classificação Indicativa"
                     />
                 </div>
             </div>
@@ -109,15 +125,15 @@ export function AnimeContent({ anime }: any) {
 
             <div className="list-episodes">
                 <ul>
-                    {anime.episodios.map((episodio: any) => {
+                    {anime.episodios.map((episodio: IEpisodios) => {
                         const buttonClass =
-                            episodio.episodioId === selectedEpisode
+                            episodio.episodioNumero === selectedEpisode
                                 ? 'selected'
                                 : ''
 
                         return (
                             <AnimeContentEpisodeList
-                                key={episodio.episodioId}
+                                key={episodio.episodioNumero}
                                 buttonClass={buttonClass}
                                 episodio={episodio}
                                 gerenciarEpisodioButton={

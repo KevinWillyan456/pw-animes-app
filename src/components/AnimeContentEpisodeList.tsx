@@ -1,8 +1,16 @@
+import { IEpisodios } from '../types/Anime'
+
+interface IAnimeContentEpisodeList {
+    buttonClass: string
+    episodio: IEpisodios
+    gerenciarEpisodioButton: (episodio: IEpisodios) => void
+}
+
 export function AnimeContentEpisodeList({
     buttonClass,
     episodio,
     gerenciarEpisodioButton,
-}: any) {
+}: IAnimeContentEpisodeList) {
     return (
         <>
             <li>
@@ -10,7 +18,7 @@ export function AnimeContentEpisodeList({
                     className={buttonClass}
                     onClick={() => gerenciarEpisodioButton(episodio)}
                 >
-                    {`EP ${episodio.episodioId}`}
+                    {`EP ${episodio.episodioNumero}`}
                 </button>
             </li>
         </>

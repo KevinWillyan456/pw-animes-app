@@ -4,10 +4,11 @@ import { Footer } from '../components/Footer'
 import { AnimeContent } from '../components/AnimeContent'
 import Header from '../components/Header'
 import api from '../services/Api'
+import { IAnime } from '../types/Anime'
 
 export function Anime() {
     const { id } = useParams<{ id: string }>()
-    const [anime, setAnime] = useState<any>(null)
+    const [anime, setAnime] = useState<IAnime | null>(null)
 
     const getAnime = async (id: string) => {
         const res = await api.get(`/animes/${id}`)
@@ -16,7 +17,6 @@ export function Anime() {
     }
 
     useEffect(() => {
-        // const animeUrl = `https://pw-animes-react-database.kevinsouza456.repl.co/animes/${id}`
         getAnime(id)
     }, [])
 
