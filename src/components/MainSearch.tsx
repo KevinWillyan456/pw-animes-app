@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Card } from './Card'
 import { useLocation } from 'react-router-dom'
+import api from '../services/Api'
 
 export function MainSearch() {
     const location = useLocation()
@@ -10,8 +11,8 @@ export function MainSearch() {
     const [query] = useState(searchParams.get('q'))
 
     const getSearchedAnimes = async (url: any) => {
-        const res = await fetch(url)
-        const data = await res.json()
+        const res = await api.get(url)
+        const data = await res.data
 
         if (!query) return
 
@@ -36,9 +37,9 @@ export function MainSearch() {
     }
 
     useEffect(() => {
-        const searchWithQueryURL =
-            'https://pw-animes-react-database.kevinsouza456.repl.co/animes'
-        getSearchedAnimes(searchWithQueryURL)
+        // const searchWithQueryURL =
+        //     'https://pw-animes-react-database.kevinsouza456.repl.co/animes'
+        getSearchedAnimes('/animes')
     }, [query])
 
     return (
