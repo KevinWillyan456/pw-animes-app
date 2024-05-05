@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useState } from 'react'
 import './AnimeContent.css'
-import { AnimeContentEpisodeList } from './AnimeContentEpisodeList'
 import StorageService from '../utils/StorageService'
 import { IAnime, IEpisodios } from '../types/Anime'
 
@@ -126,20 +125,22 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
             <div className="list-episodes">
                 <ul>
                     {anime.episodios.map((episodio: IEpisodios) => {
-                        const buttonClass =
-                            episodio.episodioNumero === selectedEpisode
-                                ? 'selected'
-                                : ''
-
                         return (
-                            <AnimeContentEpisodeList
-                                key={episodio.episodioNumero}
-                                buttonClass={buttonClass}
-                                episodio={episodio}
-                                gerenciarEpisodioButton={
-                                    gerenciarEpisodioButton
-                                }
-                            />
+                            <li>
+                                <button
+                                    className={
+                                        episodio.episodioNumero ===
+                                        selectedEpisode
+                                            ? 'selected'
+                                            : ''
+                                    }
+                                    onClick={() =>
+                                        gerenciarEpisodioButton(episodio)
+                                    }
+                                >
+                                    {`EP ${episodio.episodioNumero}`}
+                                </button>
+                            </li>
                         )
                     })}
                 </ul>

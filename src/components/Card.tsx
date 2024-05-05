@@ -1,8 +1,11 @@
-import PropTypes from 'prop-types'
-
+import { IAnime } from '../types/Anime'
 import './Card.css'
 
-export function Card({ anime }: any) {
+interface ICard {
+    anime: IAnime
+}
+
+export function Card({ anime }: ICard) {
     return (
         <a href={`/anime/${anime._id}`}>
             <div className="card">
@@ -13,11 +16,4 @@ export function Card({ anime }: any) {
             </div>
         </a>
     )
-}
-
-Card.propTypes = {
-    anime: PropTypes.shape({
-        urlCapa: PropTypes.string.isRequired,
-        nome: PropTypes.string.isRequired,
-    }).isRequired,
 }
