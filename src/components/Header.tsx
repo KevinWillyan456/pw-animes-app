@@ -22,27 +22,6 @@ export default function Header() {
                     </div>
                 </a>
                 <nav className="navbar">
-                    <ul className="navbar-ul">
-                        <li>
-                            <a href="/">Início</a>
-                        </li>
-                        <li>
-                            <a href="#">Lista de Animes</a>
-                        </li>
-                        <li>
-                            <a href="#">Favoritos</a>
-                        </li>
-                        <li>
-                            <a href="#">Mangás</a>
-                        </li>
-                        <li>
-                            <a href="#">Calendário</a>
-                        </li>
-                        <li>
-                            <a href="#">Como assistir?</a>
-                        </li>
-                    </ul>
-
                     <div onClick={handleClick} className="navbar-hamburger">
                         <GiHamburgerMenu />
                     </div>
@@ -54,26 +33,14 @@ export default function Header() {
                                 className="navbar-hamburger-close"
                             />
 
-                            <ul className="navbar-ul-mobile">
+                            <ul className="navbar-ul">
                                 <li>
                                     <a onClick={handleClick} href="/">
                                         Início
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">Lista de Animes</a>
-                                </li>
-                                <li>
                                     <a href="#">Favoritos</a>
-                                </li>
-                                <li>
-                                    <a href="#">Mangás</a>
-                                </li>
-                                <li>
-                                    <a href="#">Calendário</a>
-                                </li>
-                                <li>
-                                    <a href="#">Como assistir?</a>
                                 </li>
                             </ul>
                         </div>
