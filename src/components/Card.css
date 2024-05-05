@@ -1,6 +1,6 @@
 .card {
-    width: 260px;
-    height: 360px;
+    width: 100%;
+    height: 100%;
     background-color: black;
     position: relative;
     border: 5px solid var(--color-base-4);
@@ -33,22 +33,4 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-}
-@media (max-width: 650px) {
-    .card {
-        width: calc(260px * 0.8);
-        height: calc(360px * 0.8);
-    }
-}
-@media (max-width: 520px) {
-    .card {
-        width: calc(260px * 0.6);
-        height: calc(360px * 0.6);
-    }
-}
-@media (max-width: 390px) {
-    .card {
-        width: calc(260px * 0.5);
-        height: calc(360px * 0.5);
-    }
 }

@@ -6,39 +6,35 @@ import { IAnime } from '../types/Anime'
 
 export function Main() {
     const [animes, setAnimes] = useState<IAnime[]>([])
-
-    const getAnimes = async (url: any) => {
-        const res = await api.get(url)
-        const data = await res.data
-
-        data.sort((a: any, b: any) => {
-            const nomeA = a.nome.toUpperCase()
-            const nomeB = b.nome.toUpperCase()
-
-            if (nomeA < nomeB) {
-                return -1
-            }
-            if (nomeA > nomeB) {
-                return 1
-            }
-            return 0
-        })
-
-        setAnimes(data)
-    }
+    const [animesFetched, setAnimesFetched] = useState<boolean>(false)
+    const [error, setError] = useState<boolean>(false)
 
     useEffect(() => {
-        getAnimes('/animes')
+        api.get('/animes')
+            .then((res) => {
+                setAnimesFetched(true)
+                setAnimes(res.data)
+            })
+            .catch((err) => {
+                setError(true)
+            })
     }, [])
 
     return (
         <>
             <section className="container-animes">
                 <div className="content-animes">
-                    {animes.length > 0 &&
+                    {!animesFetched ? (
+                        <h1 className="loading">Carregando...</h1>
+                    ) : animes.length > 0 && !error && animesFetched ? (
                         animes.map((anime: any) => (
                             <Card key={anime._id} anime={anime} />
-                        ))}
+                        ))
+                    ) : (
+                        <h1 className="error">
+                            Erro ao comunicar com o servidor
+                        </h1>
+                    )}
                 </div>
             </section>
         </>
