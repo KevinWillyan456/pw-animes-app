@@ -4,13 +4,11 @@ import { Footer } from '../components/Footer'
 
 function Home() {
     return (
-        <>
-            <section className="home-container">
-                <Header />
-                <Main />
-                <Footer />
-            </section>
-        </>
+        <section className="home-container">
+            <Header />
+            <Main />
+            <Footer />
+        </section>
     )
 }
 

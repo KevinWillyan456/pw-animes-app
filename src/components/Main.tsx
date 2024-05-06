@@ -21,22 +21,18 @@ export function Main() {
     }, [])
 
     return (
-        <>
-            <section className="container-animes">
-                <div className="content-animes">
-                    {!animesFetched ? (
-                        <h1 className="loading">Carregando...</h1>
-                    ) : animes.length > 0 && !error && animesFetched ? (
-                        animes.map((anime: any) => (
-                            <Card key={anime._id} anime={anime} />
-                        ))
-                    ) : (
-                        <h1 className="error">
-                            Erro ao comunicar com o servidor
-                        </h1>
-                    )}
-                </div>
-            </section>
-        </>
+        <section className="container-animes">
+            <div className="content-animes">
+                {!animesFetched ? (
+                    <h1 className="loading">Carregando...</h1>
+                ) : animes.length > 0 && !error && animesFetched ? (
+                    animes.map((anime: any) => (
+                        <Card key={anime._id} anime={anime} />
+                    ))
+                ) : (
+                    <h1 className="error">Erro ao comunicar com o servidor</h1>
+                )}
+            </div>
+        </section>
     )
 }

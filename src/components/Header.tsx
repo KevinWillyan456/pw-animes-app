@@ -4,6 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { SearchInput } from './SearchInput'
 
 import './Header.css'
+import { Link } from 'react-router-dom'
 
 export default function Header() {
     const [mostrarMenu, setMostrarMenu] = useState(false)
@@ -15,12 +16,12 @@ export default function Header() {
     return (
         <>
             <header className="cabecalho">
-                <a href="/">
+                <Link to="/">
                     <div className="logo">
                         <div className="part-1">Pw</div>
                         <div className="part-2">Animes</div>
                     </div>
-                </a>
+                </Link>
                 <nav className="navbar">
                     <div onClick={handleClick} className="navbar-hamburger">
                         <GiHamburgerMenu />
@@ -35,12 +36,12 @@ export default function Header() {
 
                             <ul className="navbar-ul">
                                 <li>
-                                    <a onClick={handleClick} href="/">
+                                    <Link onClick={handleClick} to="/">
                                         Início
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#">Favoritos</a>
+                                    <Link to="#">Favoritos</Link>
                                 </li>
                             </ul>
                         </div>

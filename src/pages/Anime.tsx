@@ -21,12 +21,10 @@ export function Anime() {
     }, [])
 
     return (
-        <>
-            <section className="anime-container">
-                <Header />
-                {anime && <AnimeContent anime={anime} />}
-                <Footer />
-            </section>
-        </>
+        <section className="anime-container">
+            <Header />
+            {anime && <AnimeContent anime={anime} />}
+            <Footer />
+        </section>
     )
 }

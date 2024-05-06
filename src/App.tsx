@@ -31,7 +31,7 @@ const App: React.FC = () => (
     <IonApp>
         <IonReactRouter>
             <IonRouterOutlet>
-                <Route path="/">
+                <Route path="/" exact>
                     <Home />
                 </Route>
                 <Route path="/anime/:id">

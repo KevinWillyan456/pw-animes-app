@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { IAnime } from '../types/Anime'
 import './Card.css'
 
@@ -7,13 +8,13 @@ interface ICard {
 
 export function Card({ anime }: ICard) {
     return (
-        <a href={`/anime/${anime._id}`}>
+        <Link to={`/anime/${anime._id}`}>
             <div className="card">
                 <div className="card-img">
                     <img src={anime.urlCapa} />
                 </div>
                 <div className="card-title">{anime.nome}</div>
             </div>
-        </a>
+        </Link>
     )
 }
