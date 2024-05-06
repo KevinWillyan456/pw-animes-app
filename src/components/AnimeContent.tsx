@@ -83,7 +83,7 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
     }
 
     return (
-        <>
+        <section className="anime-content">
             <h1 className="anime-content-title">{anime.nome}</h1>
             <h2 className="anime-content-title-synopsis">Sinopse</h2>
             <div className="anime-content-synopsis-content">
@@ -152,6 +152,6 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
                     })}
                 </ul>
             </div>
-        </>
+        </section>
     )
 }
