@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 import api from '../services/Api'
 import { IAnime } from '../types/Anime'
 import Loading from './Loading'
+import './MainSearch.css'
 
 export function MainSearch() {
     const [animes, setAnimes] = useState<IAnime[]>([])
@@ -40,7 +41,7 @@ export function MainSearch() {
     }, [query])
 
     return (
-        <section className="container-animes">
+        <section className="container-animes-search">
             <h2 className="main-search-title">
                 Resultados da pesquisa:
                 <div className="main-search-result">{query}</div>
@@ -49,8 +50,16 @@ export function MainSearch() {
                 {!animesFetched && !error ? (
                     <Loading />
                 ) : animes.length > 0 && animesFetched && !error ? (
-                    animes.map((anime: IAnime) => (
-                        <Card key={anime._id} anime={anime} />
+                    animes.map((anime: IAnime, i) => (
+                        <Card
+                            key={anime._id}
+                            anime={anime}
+                            style={
+                                {
+                                    '--delay': `${`${i * 80}`}ms`,
+                                } as React.CSSProperties
+                            }
+                        />
                     ))
                 ) : error ? (
                     <h1 className="error">Erro ao comunicar com o servidor</h1>

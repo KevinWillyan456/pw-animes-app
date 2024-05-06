@@ -28,8 +28,16 @@ export function Main() {
                 {!animesFetched && !error ? (
                     <Loading />
                 ) : animes.length > 0 && !error && animesFetched ? (
-                    animes.map((anime: any) => (
-                        <Card key={anime._id} anime={anime} />
+                    animes.map((anime: IAnime, i) => (
+                        <Card
+                            key={anime._id}
+                            anime={anime}
+                            style={
+                                {
+                                    '--delay': `${`${i * 80}`}ms`,
+                                } as React.CSSProperties
+                            }
+                        />
                     ))
                 ) : (
                     <h1 className="error">Erro ao comunicar com o servidor</h1>

@@ -4,12 +4,13 @@ import './Card.css'
 
 interface ICard {
     anime: IAnime
+    style: React.CSSProperties
 }
 
-export function Card({ anime }: ICard) {
+export function Card({ anime, style }: ICard) {
     return (
         <Link to={`/anime/${anime._id}`}>
-            <div className="card">
+            <div className="card" style={style}>
                 <div className="card-img">
                     <img src={anime.urlCapa} />
                 </div>

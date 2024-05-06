@@ -113,9 +113,7 @@
 .actionButtons .prev,
 .actionButtons .next {
     transition: 200ms;
-    width: 180px;
-    height: 60px;
-
+    padding: 12px 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,6 +122,8 @@
     border: none;
     font-size: 20px;
     cursor: pointer;
+    border-radius: 10px;
+    gap: 6px;
 }
 .actionButtons .prev:not(.forbidden):hover,
 .actionButtons .next:not(.forbidden):hover {
@@ -141,10 +141,8 @@
     .anime-content-synopsis-content {
         font-size: 16px;
     }
-    .actionButtons .prev,
-    .actionButtons .next {
-        width: 140px;
-        height: 60px;
-        font-size: 20px;
+    .actionButtons .prev span,
+    .actionButtons .next span {
+        display: none;
     }
 }

@@ -3,6 +3,11 @@ import { useState } from 'react'
 import './AnimeContent.css'
 import StorageService from '../utils/StorageService'
 import { IAnime, IEpisodios } from '../types/Anime'
+import { IonIcon } from '@ionic/react'
+import {
+    arrowForwardCircleOutline,
+    arrowBackCircleOutline,
+} from 'ionicons/icons'
 
 const storageService = new StorageService()
 
@@ -109,7 +114,8 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
                     onClick={handlePreviousEpisode}
                     disabled={indexEpisode === 0}
                 >
-                    Anterior
+                    <IonIcon icon={arrowBackCircleOutline} size="large" />
+                    <span>Anterior</span>
                 </button>
                 <button
                     className={`next ${
@@ -118,7 +124,8 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
                     onClick={handleNextEpisode}
                     disabled={indexEpisode === totalEpisodes - 1}
                 >
-                    Próximo
+                    <IonIcon icon={arrowForwardCircleOutline} size="large" />
+                    <span>Próximo</span>
                 </button>
             </div>
 
