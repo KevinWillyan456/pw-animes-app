@@ -5,42 +5,35 @@ import api from '../services/Api'
 import { IAnime } from '../types/Anime'
 
 export function MainSearch() {
-    const location = useLocation()
-    const searchParams = new URLSearchParams(location.search)
-
     const [animes, setAnimes] = useState<IAnime[]>([])
-    const [query] = useState(searchParams.get('q'))
     const [animesFetched, setAnimesFetched] = useState(false)
-
-    const getSearchedAnimes = async (url: any) => {
-        const res = await api.get(url)
-        const data = await res.data
-        setAnimesFetched(true)
-
-        if (!query) return
-
-        const dataSerched = data.filter((anime: IAnime) => {
-            return anime.nome.toLowerCase().includes(query.toLowerCase())
-        })
-
-        dataSerched.sort((a: IAnime, b: IAnime) => {
-            const nomeA = a.nome.toUpperCase()
-            const nomeB = b.nome.toUpperCase()
-
-            if (nomeA < nomeB) {
-                return -1
-            }
-            if (nomeA > nomeB) {
-                return 1
-            }
-            return 0
-        })
-
-        setAnimes(dataSerched)
-    }
+    const [error, setError] = useState<boolean>(false)
+    const location = useLocation()
+    const query = new URLSearchParams(location.search).get('q') || ''
 
     useEffect(() => {
-        getSearchedAnimes('/animes')
+        async function fetchAnimes() {
+            try {
+                if (!query) {
+                    setAnimes([])
+                    setAnimesFetched(true)
+                    return
+                }
+
+                const response = await api.get('/animes')
+                const data = response.data.filter((anime: IAnime) =>
+                    anime.nome.toLowerCase().includes(query.toLowerCase())
+                )
+                setAnimes(data)
+                setAnimesFetched(true)
+            } catch (error) {
+                console.log(error)
+                setAnimesFetched(true)
+                setError(true)
+            }
+        }
+
+        fetchAnimes()
     }, [query])
 
     return (
@@ -50,17 +43,17 @@ export function MainSearch() {
                 <div className="main-search-result">{query}</div>
             </h2>
             <div className="content-animes">
-                {!animesFetched ? (
+                {!animesFetched && !error ? (
                     <h1 className="loading">Carregando...</h1>
-                ) : animes.length > 0 && animesFetched ? (
+                ) : animes.length > 0 && animesFetched && !error ? (
                     animes.map((anime: IAnime) => (
                         <Card key={anime._id} anime={anime} />
                     ))
+                ) : error ? (
+                    <h1 className="error">Erro ao comunicar com o servidor</h1>
                 ) : (
                     <div className="anime-not-found">
-                        <div className="content">
-                            Nenhum anime foi encontrado
-                        </div>
+                        <div className="content">Nenhum anime encontrado</div>
                     </div>
                 )}
             </div>

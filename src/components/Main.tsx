@@ -15,7 +15,8 @@ export function Main() {
                 setAnimesFetched(true)
                 setAnimes(res.data)
             })
-            .catch((err) => {
+            .catch(() => {
+                setAnimesFetched(true)
                 setError(true)
             })
     }, [])
@@ -23,7 +24,7 @@ export function Main() {
     return (
         <section className="container-animes">
             <div className="content-animes">
-                {!animesFetched ? (
+                {!animesFetched && !error ? (
                     <h1 className="loading">Carregando...</h1>
                 ) : animes.length > 0 && !error && animesFetched ? (
                     animes.map((anime: any) => (
