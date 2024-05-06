@@ -126,7 +126,7 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
                 <ul>
                     {anime.episodios.map((episodio: IEpisodios) => {
                         return (
-                            <li>
+                            <li key={episodio._id}>
                                 <button
                                     className={
                                         episodio.episodioNumero ===

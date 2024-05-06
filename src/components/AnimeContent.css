@@ -44,9 +44,21 @@
     align-items: center;
     justify-content: center;
 }
-.view-episode div iframe {
+.view-episode .load {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 0 10px var(--color-base-3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.view-episode .load iframe {
     border: none;
-    width: 80vw;
+    width: 90vw;
+    height: calc(90vw * 9 / 16);
+    max-width: 1000px;
+    max-height: calc(1000px * 9 / 16);
 }
 .list-episodes {
     margin-bottom: 40px;
