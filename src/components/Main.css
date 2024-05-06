@@ -2,7 +2,7 @@
     width: 100%;
     min-height: calc(100vh - 248px);
 }
-.container-animes .content-animes {
+.content-animes {
     padding: 20px;
     background-color: var(--color-base-7);
 

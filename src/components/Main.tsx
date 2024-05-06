@@ -3,6 +3,7 @@ import { Card } from './Card'
 import './Main.css'
 import api from '../services/Api'
 import { IAnime } from '../types/Anime'
+import Loading from './Loading'
 
 export function Main() {
     const [animes, setAnimes] = useState<IAnime[]>([])
@@ -25,7 +26,7 @@ export function Main() {
         <section className="container-animes">
             <div className="content-animes">
                 {!animesFetched && !error ? (
-                    <h1 className="loading">Carregando...</h1>
+                    <Loading />
                 ) : animes.length > 0 && !error && animesFetched ? (
                     animes.map((anime: any) => (
                         <Card key={anime._id} anime={anime} />

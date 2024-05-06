@@ -5,6 +5,7 @@ import { AnimeContent } from '../components/AnimeContent'
 import Header from '../components/Header'
 import api from '../services/Api'
 import { IAnime } from '../types/Anime'
+import Loading from '../components/Loading'
 
 export function Anime() {
     const { id } = useParams<{ id: string }>()
@@ -23,7 +24,13 @@ export function Anime() {
     return (
         <section className="anime-container">
             <Header />
-            {anime && <AnimeContent anime={anime} />}
+            {anime ? (
+                <AnimeContent anime={anime} />
+            ) : (
+                <div className="content-animes">
+                    <Loading />
+                </div>
+            )}
             <Footer />
         </section>
     )

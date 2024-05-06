@@ -3,6 +3,7 @@ import { Card } from './Card'
 import { useLocation } from 'react-router-dom'
 import api from '../services/Api'
 import { IAnime } from '../types/Anime'
+import Loading from './Loading'
 
 export function MainSearch() {
     const [animes, setAnimes] = useState<IAnime[]>([])
@@ -20,6 +21,9 @@ export function MainSearch() {
                     return
                 }
 
+                setError(false)
+                setAnimesFetched(false)
+
                 const response = await api.get('/animes')
                 const data = response.data.filter((anime: IAnime) =>
                     anime.nome.toLowerCase().includes(query.toLowerCase())
@@ -27,7 +31,6 @@ export function MainSearch() {
                 setAnimes(data)
                 setAnimesFetched(true)
             } catch (error) {
-                console.log(error)
                 setAnimesFetched(true)
                 setError(true)
             }
@@ -44,7 +47,7 @@ export function MainSearch() {
             </h2>
             <div className="content-animes">
                 {!animesFetched && !error ? (
-                    <h1 className="loading">Carregando...</h1>
+                    <Loading />
                 ) : animes.length > 0 && animesFetched && !error ? (
                     animes.map((anime: IAnime) => (
                         <Card key={anime._id} anime={anime} />

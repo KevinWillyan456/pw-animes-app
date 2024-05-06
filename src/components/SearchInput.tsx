@@ -19,8 +19,6 @@ export function SearchInput() {
 
         history.push(`/search?${queryParams.toString()}`)
 
-        history.go(0)
-
         setSearch('')
     }
     return (
