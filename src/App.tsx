@@ -21,9 +21,9 @@ import '@ionic/react/css/display.css'
 import './theme/variables.css'
 import './theme/global.css'
 import { Route } from 'react-router'
-import { Anime } from './pages/Anime'
 import Home from './pages/Home'
 import Search from './pages/Search'
+import AnimeView from './pages/AnimeView'
 
 setupIonicReact()
 
@@ -35,7 +35,7 @@ const App: React.FC = () => (
                     <Home />
                 </Route>
                 <Route path="/anime/:id">
-                    <Anime />
+                    <AnimeView />
                 </Route>
                 <Route path="/search">
                     <Search />

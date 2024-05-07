@@ -73,47 +73,35 @@
     max-height: calc(1000px * 9 / 16);
 }
 .list-episodes {
-    margin-bottom: 40px;
-    margin-top: 40px;
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-}
-.list-episodes ul {
-    list-style-type: none;
     width: calc(100% - 40px);
-    height: 408px;
-    background-color: black;
-    overflow-y: scroll;
+    max-width: 500px;
+    max-height: calc(56px * 5);
+    overflow: auto;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
-.list-episodes ul::-webkit-scrollbar {
-    width: 10px;
+.list-episodes::-webkit-scrollbar {
+    width: 0px;
 }
-.list-episodes ul::-webkit-scrollbar-track {
-    background: var(--color-black);
-    border-radius: 10px;
-}
-
-.list-episodes ul::-webkit-scrollbar-thumb {
-    background-color: var(--color-base-1);
-}
-.list-episodes ul li button {
+.list-episodes .btn-episode {
     transition: 200ms;
-    background-color: var(--color-base-7);
-    color: white;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
     font-size: 16px;
+    background-color: var(--color-base-6);
+    color: var(--color-white);
+    border-radius: 10px;
     cursor: pointer;
-    padding: 10px;
-    border: none;
-    margin-bottom: 2px;
 }
-.list-episodes ul li:last-child button {
-    margin-bottom: 0;
+.list-episodes .btn-episode:hover:not(.selected) {
+    background-color: var(--color-base-4);
 }
-
-.list-episodes ul li button.selected {
+.list-episodes .btn-episode.selected {
     background-color: var(--color-base-2);
 }
 .actionButtons {

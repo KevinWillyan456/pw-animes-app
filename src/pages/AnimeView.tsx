@@ -7,7 +7,7 @@ import api from '../services/Api'
 import { IAnime } from '../types/Anime'
 import Loading from '../components/Loading'
 
-export function Anime() {
+function AnimeView() {
     const { id } = useParams<{ id: string }>()
     const [anime, setAnime] = useState<IAnime | null>(null)
 
@@ -35,3 +35,5 @@ export function Anime() {
         </section>
     )
 }
+
+export default AnimeView

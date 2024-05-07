@@ -130,27 +130,21 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
             </div>
 
             <div className="list-episodes">
-                <ul>
-                    {anime.episodios.map((episodio: IEpisodios) => {
-                        return (
-                            <li key={episodio._id}>
-                                <button
-                                    className={
-                                        episodio.episodioNumero ===
-                                        selectedEpisode
-                                            ? 'selected'
-                                            : ''
-                                    }
-                                    onClick={() =>
-                                        gerenciarEpisodioButton(episodio)
-                                    }
-                                >
-                                    {`EP ${episodio.episodioNumero}`}
-                                </button>
-                            </li>
-                        )
-                    })}
-                </ul>
+                {anime.episodios.map((episodio: IEpisodios) => {
+                    return (
+                        <button
+                            key={episodio._id}
+                            className={
+                                episodio.episodioNumero === selectedEpisode
+                                    ? 'btn-episode selected'
+                                    : 'btn-episode'
+                            }
+                            onClick={() => gerenciarEpisodioButton(episodio)}
+                        >
+                            {`EP ${episodio.episodioNumero}`}
+                        </button>
+                    )
+                })}
             </div>
         </section>
     )
