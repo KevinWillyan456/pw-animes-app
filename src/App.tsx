@@ -1,4 +1,13 @@
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react'
+import {
+    IonApp,
+    IonIcon,
+    IonLabel,
+    IonRouterOutlet,
+    IonTabBar,
+    IonTabButton,
+    IonTabs,
+    setupIonicReact,
+} from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
 
 /* Core CSS required for Ionic components to work properly */
@@ -24,23 +33,51 @@ import { Route } from 'react-router'
 import Home from './pages/Home'
 import Search from './pages/Search'
 import AnimeView from './pages/AnimeView'
+import { heart, home } from 'ionicons/icons'
 
 setupIonicReact()
 
 const App: React.FC = () => (
     <IonApp>
         <IonReactRouter>
-            <IonRouterOutlet>
-                <Route path="/" exact>
-                    <Home />
-                </Route>
-                <Route path="/anime/:id">
-                    <AnimeView />
-                </Route>
-                <Route path="/search">
-                    <Search />
-                </Route>
-            </IonRouterOutlet>
+            <IonTabs>
+                <IonRouterOutlet>
+                    <Route
+                        path="/"
+                        exact={true}
+                        render={() => <Home />}
+                    ></Route>
+                    <Route
+                        path="/anime/:id"
+                        exact={true}
+                        render={() => <AnimeView />}
+                    ></Route>
+                    <Route
+                        path="/search"
+                        exact={true}
+                        render={() => <Search />}
+                    />
+                </IonRouterOutlet>
+
+                <IonTabBar
+                    slot="bottom"
+                    style={{
+                        height: '60px',
+                        minHeight: '60px',
+                        maxHeight: '60px',
+                    }}
+                >
+                    <IonTabButton tab="home" href="/">
+                        <IonIcon icon={home} size="large" />
+                        <IonLabel>Início</IonLabel>
+                    </IonTabButton>
+
+                    <IonTabButton tab="search" href="/">
+                        <IonIcon icon={heart} size="large" />
+                        <IonLabel>Favoritos</IonLabel>
+                    </IonTabButton>
+                </IonTabBar>
+            </IonTabs>
         </IonReactRouter>
     </IonApp>
 )

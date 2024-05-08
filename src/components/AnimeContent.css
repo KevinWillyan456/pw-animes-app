@@ -1,6 +1,7 @@
 .anime-content {
     width: 100%;
     animation: fadeIn 1s;
+    padding-bottom: 40px;
 }
 @keyframes fadeIn {
     from {

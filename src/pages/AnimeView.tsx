@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Footer } from '../components/Footer'
 import { AnimeContent } from '../components/AnimeContent'
 import Header from '../components/Header'
 import api from '../services/Api'
@@ -31,7 +30,6 @@ function AnimeView() {
                     <Loading />
                 </div>
             )}
-            <Footer />
         </section>
     )
 }

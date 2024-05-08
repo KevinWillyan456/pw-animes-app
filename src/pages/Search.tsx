@@ -1,4 +1,3 @@
-import { Footer } from '../components/Footer'
 import Header from '../components/Header'
 import { MainSearch } from '../components/MainSearch'
 
@@ -7,7 +6,6 @@ function Search() {
         <section className="search-container">
             <Header />
             <MainSearch />
-            <Footer />
         </section>
     )
 }
