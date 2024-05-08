@@ -3,7 +3,7 @@ import { useState } from 'react'
 import './AnimeContent.css'
 import StorageService from '../utils/StorageService'
 import { IAnime, IEpisodios } from '../types/Anime'
-import { IonIcon } from '@ionic/react'
+import { IonIcon, IonImg } from '@ionic/react'
 import {
     arrowForwardCircleOutline,
     arrowBackCircleOutline,
@@ -96,14 +96,19 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
                     EP 01
                 </div>
                 <div className="age">
-                    <img
+                    <IonImg
                         src={
                             classificacaoIndicativa[
                                 anime.classificacaoIndicativa
                             ]
                         }
                         alt="Classificação Indicativa"
-                    />
+                        onIonError={(e) => {
+                            const target = e.currentTarget as HTMLImageElement
+                            target.src =
+                                'https://m.media-amazon.com/images/I/41XsHyZVULL._AC_UF1000,1000_QL80_.jpg'
+                        }}
+                    ></IonImg>
                 </div>
             </div>
             <div className="view-episode">
