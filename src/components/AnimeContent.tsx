@@ -17,8 +17,8 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
         storageService.read(anime._id)
     )
     const [selectedEpisode, setSelectedEpisode] = useState(1)
-    const loadRef = useRef<any>(null)
-    const episodeIndicatorRef = useRef<any>(null)
+    const loadRef = useRef<HTMLDivElement | null>(null)
+    const episodeIndicatorRef = useRef<HTMLDivElement | null>(null)
 
     const totalEpisodes = anime.episodios.length
 
@@ -33,9 +33,11 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
 
             if (!isNaN(episode) && episode < 10) {
                 const formattedEpisode = episode.toString().padStart(2, '0')
-                episodeIndicatorRef.current.textContent = `EP ${formattedEpisode}`
+                if (episodeIndicatorRef.current)
+                    episodeIndicatorRef.current.textContent = `EP ${formattedEpisode}`
             } else {
-                episodeIndicatorRef.current.textContent = `EP ${episode}`
+                if (episodeIndicatorRef.current)
+                    episodeIndicatorRef.current.textContent = `EP ${episode}`
             }
         }
     }

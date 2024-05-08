@@ -8,7 +8,7 @@ export function SearchInput() {
     const location = useLocation()
     const history = useHistory()
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
 
         if (!search) return

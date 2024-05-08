@@ -3,7 +3,7 @@ export default class StorageService {
         const values = localStorage.getItem('history')
         if (values) {
             const history = JSON.parse(values)
-            const item = history.find((item: any) => item.id === id)
+            const item = history.find((item: { id: string }) => item.id === id)
             if (item) {
                 item.number = number
                 localStorage.setItem('history', JSON.stringify(history))
@@ -25,7 +25,7 @@ export default class StorageService {
         const value = localStorage.getItem('history')
         if (value) {
             const history = JSON.parse(value)
-            const item = history.find((item: any) => item.id === id)
+            const item = history.find((item: { id: string }) => item.id === id)
             if (item) {
                 return item.number
             }
