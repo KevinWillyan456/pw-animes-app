@@ -11,3 +11,23 @@
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     grid-gap: 10px;
 }
+.container-loading-search {
+    width: 100%;
+    height: calc(100vh - 422px);
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container-error-search {
+    width: 100%;
+    height: calc(100vh - 422px);
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container-error-search .error {
+    color: var(--color-white);
+    text-align: center;
+}

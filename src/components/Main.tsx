@@ -38,7 +38,9 @@ export function Main() {
     return (
         <section className="container-animes">
             {!animesFetched && !error ? (
-                <Loading />
+                <div className="container-loading">
+                    <Loading />
+                </div>
             ) : animes.length > 0 && !error && animesFetched ? (
                 genres.length > 0 &&
                 genres.map((genre) => (
@@ -69,7 +71,9 @@ export function Main() {
                     </section>
                 ))
             ) : (
-                <h1 className="error">Erro ao comunicar com o servidor</h1>
+                <div className="container-error">
+                    <h1 className="error">Erro ao comunicar com o servidor</h1>
+                </div>
             )}
         </section>
     )

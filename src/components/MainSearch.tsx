@@ -46,11 +46,13 @@ export function MainSearch() {
                 Resultados da pesquisa:
                 <div className="main-search-result">{query}</div>
             </h2>
-            <div className="content-animes-search">
-                {!animesFetched && !error ? (
+            {!animesFetched && !error ? (
+                <div className="container-loading-search">
                     <Loading />
-                ) : animes.length > 0 && animesFetched && !error ? (
-                    animes.map((anime: IAnime, i) => (
+                </div>
+            ) : animes.length > 0 && animesFetched && !error ? (
+                <div className="content-animes-search">
+                    {animes.map((anime: IAnime, i) => (
                         <Card
                             key={anime._id}
                             anime={anime}
@@ -60,15 +62,17 @@ export function MainSearch() {
                                 } as React.CSSProperties
                             }
                         />
-                    ))
-                ) : error ? (
+                    ))}
+                </div>
+            ) : error ? (
+                <div className="container-error-search">
                     <h1 className="error">Erro ao comunicar com o servidor</h1>
-                ) : (
-                    <div className="anime-not-found">
-                        <div className="content">Nenhum anime encontrado</div>
-                    </div>
-                )}
-            </div>
+                </div>
+            ) : (
+                <div className="anime-not-found">
+                    <div className="content">Nenhum anime encontrado</div>
+                </div>
+            )}
         </section>
     )
 }

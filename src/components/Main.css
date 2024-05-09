@@ -35,13 +35,12 @@
 }
 .anime-not-found {
     width: 100%;
+    max-width: calc(100% - 40px);
+    margin: 0 auto;
     height: calc(100vh - 388px);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    grid-column: 1 / -1;
 }
 .anime-not-found .content {
     width: 100%;
@@ -56,10 +55,22 @@
     text-align: center;
     color: var(--color-white);
 }
-
-.loading,
-.error {
-    grid-column: 1 / -1;
+.container-loading {
+    width: 100%;
+    height: calc(100vh - 248px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container-error {
+    width: 100%;
+    height: calc(100vh - 248px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container-loading .loading,
+.container-error .error {
     color: var(--color-white);
     text-align: center;
 }

@@ -23,7 +23,21 @@ function AnimeView() {
     return (
         <section className="anime-container">
             <Header />
-            {anime ? <AnimeContent anime={anime} /> : <Loading />}
+            {anime ? (
+                <AnimeContent anime={anime} />
+            ) : (
+                <div
+                    style={{
+                        width: '100%',
+                        height: 'calc(100vh - 248px)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                >
+                    <Loading />
+                </div>
+            )}
         </section>
     )
 }
