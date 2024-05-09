@@ -9,11 +9,16 @@ import Loading from '../components/Loading'
 function AnimeView() {
     const { id } = useParams<{ id: string }>()
     const [anime, setAnime] = useState<IAnime | null>(null)
+    const [error, setError] = useState<boolean>(false)
 
     const getAnime = async (id: string) => {
-        const res = await api.get(`/animes/${id}`)
-        const data = await res.data
-        setAnime(data)
+        api.get(`/animes/${id}`)
+            .then((res) => {
+                setAnime(res.data)
+            })
+            .catch(() => {
+                setError(true)
+            })
     }
 
     useEffect(() => {
@@ -23,18 +28,14 @@ function AnimeView() {
     return (
         <section className="anime-container">
             <Header />
-            {anime ? (
+            {anime && !error ? (
                 <AnimeContent anime={anime} />
+            ) : error ? (
+                <div className="container-error">
+                    <h1 className="error">Erro ao comunicar com o servidor</h1>
+                </div>
             ) : (
-                <div
-                    style={{
-                        width: '100%',
-                        height: 'calc(100vh - 248px)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }}
-                >
+                <div className="container-loading">
                     <Loading />
                 </div>
             )}
