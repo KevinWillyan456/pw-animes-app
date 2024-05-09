@@ -3,3 +3,11 @@
     min-height: calc(100vh - 262px);
     padding-bottom: 60px;
 }
+.content-animes-search {
+    padding: 20px;
+    background-color: var(--color-base-7);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-gap: 10px;
+}

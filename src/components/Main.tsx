@@ -9,6 +9,19 @@ export function Main() {
     const [animes, setAnimes] = useState<IAnime[]>([])
     const [animesFetched, setAnimesFetched] = useState<boolean>(false)
     const [error, setError] = useState<boolean>(false)
+    const [genres, setGenres] = useState<string[]>([])
+
+    useEffect(() => {
+        const genres = [
+            ...new Set(
+                ([] as string[]).concat(
+                    ...animes.map((anime) => anime.genero.split(','))
+                )
+            ),
+        ]
+
+        setGenres(genres)
+    }, [animes])
 
     useEffect(() => {
         api.get('/animes')
@@ -24,25 +37,40 @@ export function Main() {
 
     return (
         <section className="container-animes">
-            <div className="content-animes">
-                {!animesFetched && !error ? (
-                    <Loading />
-                ) : animes.length > 0 && !error && animesFetched ? (
-                    animes.map((anime: IAnime, i) => (
-                        <Card
-                            key={anime._id}
-                            anime={anime}
-                            style={
-                                {
-                                    '--delay': `${`${i * 80}`}ms`,
-                                } as React.CSSProperties
-                            }
-                        />
-                    ))
-                ) : (
-                    <h1 className="error">Erro ao comunicar com o servidor</h1>
-                )}
-            </div>
+            {!animesFetched && !error ? (
+                <Loading />
+            ) : animes.length > 0 && !error && animesFetched ? (
+                genres.length > 0 &&
+                genres.map((genre) => (
+                    <section key={genre} className="genre-section">
+                        <h1
+                            style={{
+                                width: '100%',
+                                gridColumn: '1 / -1',
+                                marginBottom: '10px',
+                            }}
+                        >
+                            {genre}
+                        </h1>
+
+                        {animes
+                            .filter((anime) => anime.genero.includes(genre))
+                            .map((anime: IAnime, i) => (
+                                <Card
+                                    key={anime._id}
+                                    anime={anime}
+                                    style={
+                                        {
+                                            '--delay': `${`${i * 80}`}ms`,
+                                        } as React.CSSProperties
+                                    }
+                                />
+                            ))}
+                    </section>
+                ))
+            ) : (
+                <h1 className="error">Erro ao comunicar com o servidor</h1>
+            )}
         </section>
     )
 }

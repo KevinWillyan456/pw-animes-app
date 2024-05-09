@@ -3,7 +3,7 @@
     min-height: calc(100vh - 248px);
     padding-bottom: 60px;
 }
-.content-animes {
+.container-animes .genre-section {
     padding: 20px;
     background-color: var(--color-base-7);
 

@@ -46,7 +46,7 @@ export function MainSearch() {
                 Resultados da pesquisa:
                 <div className="main-search-result">{query}</div>
             </h2>
-            <div className="content-animes">
+            <div className="content-animes-search">
                 {!animesFetched && !error ? (
                     <Loading />
                 ) : animes.length > 0 && animesFetched && !error ? (

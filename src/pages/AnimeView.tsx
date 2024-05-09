@@ -23,13 +23,7 @@ function AnimeView() {
     return (
         <section className="anime-container">
             <Header />
-            {anime ? (
-                <AnimeContent anime={anime} />
-            ) : (
-                <div className="content-animes">
-                    <Loading />
-                </div>
-            )}
+            {anime ? <AnimeContent anime={anime} /> : <Loading />}
         </section>
     )
 }
