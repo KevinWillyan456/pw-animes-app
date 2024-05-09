@@ -3,7 +3,7 @@ import './SearchInput.css'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { useLocation, useHistory } from 'react-router-dom'
 
-export function SearchInput() {
+function SearchInput() {
     const [search, setSearch] = useState('')
     const location = useLocation()
     const history = useHistory()
@@ -37,3 +37,5 @@ export function SearchInput() {
         </div>
     )
 }
+
+export default SearchInput
