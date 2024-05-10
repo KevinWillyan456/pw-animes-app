@@ -107,12 +107,16 @@
 }
 .actionButtons {
     width: 100%;
+    max-width: 1040px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     padding: 20px 20px 0 20px;
 }
 .actionButtons .prev,
-.actionButtons .next {
+.actionButtons .next,
+.actionButtons .favorite,
+.actionButtons .full-screen {
     transition: 200ms;
     padding: 12px 20px;
     display: flex;
@@ -127,7 +131,9 @@
     gap: 6px;
 }
 .actionButtons .prev:not(.forbidden):hover,
-.actionButtons .next:not(.forbidden):hover {
+.actionButtons .next:not(.forbidden):hover,
+.actionButtons .favorite:hover,
+.actionButtons .full-screen:hover {
     background-color: var(--color-base-2);
 }
 .actionButtons .prev.forbidden,
@@ -135,7 +141,7 @@
     opacity: 0.6;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 800px) {
     .anime-content-title {
         font-size: 24px;
     }
@@ -143,7 +149,18 @@
         font-size: 16px;
     }
     .actionButtons .prev span,
-    .actionButtons .next span {
+    .actionButtons .next span,
+    .actionButtons .favorite span,
+    .actionButtons .full-screen span {
         display: none;
+    }
+}
+@media (max-width: 380px) {
+    .actionButtons .prev,
+    .actionButtons .next,
+    .actionButtons .favorite,
+    .actionButtons .full-screen {
+        padding: 12px 20px;
+        padding: 10px 15px;
     }
 }

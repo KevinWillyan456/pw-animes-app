@@ -34,52 +34,75 @@ import Home from './pages/Home'
 import Search from './pages/Search'
 import AnimeView from './pages/AnimeView'
 import { heart, home } from 'ionicons/icons'
+import AnimeFavorite from './pages/AnimeFavorite'
+import { useState } from 'react'
 
 setupIonicReact()
 
-const App: React.FC = () => (
-    <IonApp>
-        <IonReactRouter>
-            <IonTabs>
-                <IonRouterOutlet>
-                    <Route
-                        path="/"
-                        exact={true}
-                        render={() => <Home />}
-                    ></Route>
-                    <Route
-                        path="/anime/:id"
-                        exact={true}
-                        render={() => <AnimeView />}
-                    ></Route>
-                    <Route
-                        path="/search"
-                        exact={true}
-                        render={() => <Search />}
-                    />
-                </IonRouterOutlet>
+const App: React.FC = () => {
+    const [selectedTab, setSelectedTab] = useState<'home' | 'favorite'>(
+        window.location.pathname === '/favorite' ? 'favorite' : 'home'
+    )
 
-                <IonTabBar
-                    slot="bottom"
-                    style={{
-                        height: '60px',
-                        minHeight: '60px',
-                        maxHeight: '60px',
-                    }}
-                >
-                    <IonTabButton tab="home" href="/">
-                        <IonIcon icon={home} size="large" />
-                        <IonLabel>Início</IonLabel>
-                    </IonTabButton>
+    return (
+        <IonApp>
+            <IonReactRouter>
+                <IonTabs>
+                    <IonRouterOutlet>
+                        <Route
+                            path="/"
+                            exact={true}
+                            render={() => <Home />}
+                        ></Route>
+                        <Route
+                            path="/anime/:id"
+                            exact={true}
+                            render={() => <AnimeView />}
+                        ></Route>
+                        <Route
+                            path="/search"
+                            exact={true}
+                            render={() => <Search />}
+                        />
+                        <Route
+                            path="/favorite"
+                            exact={true}
+                            render={() => <AnimeFavorite />}
+                        />
+                    </IonRouterOutlet>
 
-                    <IonTabButton tab="search" href="/">
-                        <IonIcon icon={heart} size="large" />
-                        <IonLabel>Favoritos</IonLabel>
-                    </IonTabButton>
-                </IonTabBar>
-            </IonTabs>
-        </IonReactRouter>
-    </IonApp>
-)
+                    <IonTabBar
+                        slot="bottom"
+                        style={{
+                            height: '60px',
+                            minHeight: '60px',
+                            maxHeight: '60px',
+                        }}
+                    >
+                        <IonTabButton
+                            tab="home"
+                            href="/"
+                            onClick={() => setSelectedTab('home')}
+                            selected={selectedTab === 'home'}
+                        >
+                            <IonIcon icon={home} size="large" />
+                            <IonLabel>Início</IonLabel>
+                        </IonTabButton>
+
+                        <IonTabButton
+                            tab="favorite"
+                            href="/favorite"
+                            onClick={() => setSelectedTab('favorite')}
+                            selected={selectedTab === 'favorite'}
+                        >
+                            <IonIcon icon={heart} size="large" />
+                            <IonLabel>Favoritos</IonLabel>
+                        </IonTabButton>
+                    </IonTabBar>
+                </IonTabs>
+            </IonReactRouter>
+        </IonApp>
+    )
+}
 
 export default App

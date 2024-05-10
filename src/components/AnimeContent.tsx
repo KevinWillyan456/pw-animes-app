@@ -7,20 +7,25 @@ import { IonIcon, IonImg } from '@ionic/react'
 import {
     arrowForwardCircleOutline,
     arrowBackCircleOutline,
+    heartOutline,
+    tvOutline,
+    heart,
 } from 'ionicons/icons'
 
-const storageService = new StorageService()
-
 export function AnimeContent({ anime }: { anime: IAnime }) {
-    const [episode, setEpisode] = useState(storageService.read(anime._id + 1))
+    const [episode, setEpisode] = useState(StorageService.read(anime._id + 1))
     const [indexEpisode, setIndexEpisode] = useState(
-        storageService.read(anime._id)
+        StorageService.read(anime._id)
     )
     const [selectedEpisode, setSelectedEpisode] = useState(1)
     const loadRef = useRef<HTMLDivElement | null>(null)
     const episodeIndicatorRef = useRef<HTMLDivElement | null>(null)
 
     const totalEpisodes = anime.episodios.length
+
+    const [isFavorite, setIsFavorite] = useState<boolean>(
+        StorageService.readFavorites().includes(anime._id)
+    )
 
     const gerenciarEpisodioTela = () => {
         const episodios = anime.episodios
@@ -60,7 +65,7 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
 
     useEffect(() => {
         setEpisode(anime.episodios[indexEpisode].episodioNumero)
-        storageService.create(anime._id, indexEpisode)
+        StorageService.create(anime._id, indexEpisode)
     }, [indexEpisode])
 
     const handlePreviousEpisode = () => {
@@ -72,6 +77,16 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
     const handleNextEpisode = () => {
         if (indexEpisode < totalEpisodes - 1) {
             setIndexEpisode(indexEpisode + 1)
+        }
+    }
+
+    const handleFavorite = () => {
+        if (StorageService.readFavorites().includes(anime._id)) {
+            StorageService.removeFavorite(anime._id)
+            setIsFavorite(false)
+        } else {
+            StorageService.createFavorite(anime._id)
+            setIsFavorite(true)
         }
     }
 
@@ -123,6 +138,17 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
                 >
                     <IonIcon icon={arrowBackCircleOutline} size="large" />
                     <span>Anterior</span>
+                </button>
+                <button className="favorite" onClick={handleFavorite}>
+                    <IonIcon
+                        icon={isFavorite ? heart : heartOutline}
+                        size="large"
+                    />
+                    <span>Favoritar</span>
+                </button>
+                <button className="full-screen">
+                    <IonIcon icon={tvOutline} size="large" />
+                    <span>Tela Cheia</span>
                 </button>
                 <button
                     className={`next ${

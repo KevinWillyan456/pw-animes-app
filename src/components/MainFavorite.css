@@ -1,0 +1,46 @@
+.main-favorite-title {
+    color: var(--color-white);
+    width: 100%;
+    height: 60px;
+    padding: 0 20px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.container-animes-favorite {
+    width: 100%;
+    min-height: calc(100vh - 262px);
+    padding-bottom: 60px;
+}
+.content-animes-favorite {
+    padding: 20px;
+    background-color: var(--color-base-7);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-gap: 10px;
+}
+.container-loading-favorite {
+    width: 100%;
+    height: calc(100vh - 422px);
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container-error-favorite {
+    width: 100%;
+    height: calc(100vh - 422px);
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container-error-favorite .error {
+    color: var(--color-white);
+    text-align: center;
+}

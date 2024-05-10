@@ -1,5 +1,5 @@
 export default class StorageService {
-    create(id: string, number: number) {
+    public static create(id: string, number: number) {
         const values = localStorage.getItem('history')
         if (values) {
             const history = JSON.parse(values)
@@ -21,7 +21,7 @@ export default class StorageService {
         }
     }
 
-    read(id: string) {
+    public static read(id: string) {
         const value = localStorage.getItem('history')
         if (value) {
             const history = JSON.parse(value)
@@ -31,5 +31,40 @@ export default class StorageService {
             }
         }
         return 0
+    }
+
+    public static createFavorite(id: string) {
+        const values = localStorage.getItem('favorites')
+        if (values) {
+            const favorites = JSON.parse(values)
+            if (favorites.includes(id)) {
+                return
+            }
+            favorites.push(id)
+            localStorage.setItem('favorites', JSON.stringify(favorites))
+            return
+        } else {
+            localStorage.setItem('favorites', JSON.stringify([id]))
+        }
+    }
+
+    public static readFavorites() {
+        const value = localStorage.getItem('favorites')
+        if (value) {
+            return JSON.parse(value)
+        }
+        return []
+    }
+
+    public static removeFavorite(id: string) {
+        const values = localStorage.getItem('favorites')
+        if (values) {
+            const favorites = JSON.parse(values)
+            const index = favorites.indexOf(id)
+            if (index !== -1) {
+                favorites.splice(index, 1)
+                localStorage.setItem('favorites', JSON.stringify(favorites))
+            }
+        }
     }
 }
