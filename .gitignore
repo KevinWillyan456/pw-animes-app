@@ -28,4 +28,6 @@ yarn-error.log*
 # Optional eslint cache
 .eslintcache
 
+# build files
 android
+icons
