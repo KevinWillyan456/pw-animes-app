@@ -131,8 +131,7 @@
 }
 .actionButtons .prev,
 .actionButtons .next,
-.actionButtons .favorite,
-.actionButtons .full-screen {
+.actionButtons .favorite {
     transition: 200ms;
     padding: 12px 20px;
     display: flex;
@@ -148,8 +147,7 @@
 }
 .actionButtons .prev:not(.forbidden):hover,
 .actionButtons .next:not(.forbidden):hover,
-.actionButtons .favorite:hover,
-.actionButtons .full-screen:hover {
+.actionButtons .favorite:hover {
     background-color: var(--color-base-2);
 }
 .actionButtons .prev.forbidden,
@@ -166,16 +164,14 @@
     }
     .actionButtons .prev span,
     .actionButtons .next span,
-    .actionButtons .favorite span,
-    .actionButtons .full-screen span {
+    .actionButtons .favorite span {
         display: none;
     }
 }
 @media (max-width: 380px) {
     .actionButtons .prev,
     .actionButtons .next,
-    .actionButtons .favorite,
-    .actionButtons .full-screen {
+    .actionButtons .favorite {
         padding: 12px 20px;
         padding: 10px 15px;
     }

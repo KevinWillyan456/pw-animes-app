@@ -8,7 +8,6 @@ import {
     arrowForwardCircleOutline,
     arrowBackCircleOutline,
     heartOutline,
-    tvOutline,
     heart,
 } from 'ionicons/icons'
 
@@ -156,10 +155,6 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
                         size="large"
                     />
                     <span>Favoritar</span>
-                </button>
-                <button className="full-screen">
-                    <IonIcon icon={tvOutline} size="large" />
-                    <span>Tela Cheia</span>
                 </button>
                 <button
                     className={`next ${
