@@ -102,6 +102,17 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
     return (
         <section className="anime-content">
             <h1 className="anime-content-title">{anime.nome}</h1>
+            <div className="anime-content-cover">
+                <IonImg
+                    src={anime.urlCapa}
+                    alt={anime.nome}
+                    onIonError={(e) => {
+                        const target = e.currentTarget as HTMLImageElement
+                        target.src =
+                            'https://m.media-amazon.com/images/I/41XsHyZVULL._AC_UF1000,1000_QL80_.jpg'
+                    }}
+                ></IonImg>
+            </div>
             <h2 className="anime-content-title-synopsis">Sinopse</h2>
             <div className="anime-content-synopsis-content">
                 {anime.sinopse}

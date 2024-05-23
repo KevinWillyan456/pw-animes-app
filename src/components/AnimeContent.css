@@ -22,14 +22,30 @@
     background-color: var(--color-base-4);
     padding: 10px 20px;
 }
+.anime-content-cover {
+    width: calc(100% - 40px);
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px var(--color-base-3);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.anime-content-cover img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
 .anime-content-title-synopsis {
-    background-color: var(--color-base-6);
+    background-color: var(--color-base-5);
     padding: 10px 20px;
 }
 .anime-content-synopsis-content {
     background-color: var(--color-base-6);
-    padding: 10px 20px;
+    padding: 20px;
     font-size: 18px;
+    text-align: justify;
 }
 .anime-content-episode {
     display: flex;
