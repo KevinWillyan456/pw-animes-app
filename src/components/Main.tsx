@@ -16,10 +16,12 @@ export function Main() {
         const genres = [
             ...new Set(
                 ([] as string[]).concat(
-                    ...animes.map((anime) => anime.genero.split(','))
+                    ...animes.map((anime) => anime.genero.split(', '))
                 )
             ),
         ]
+
+        genres.sort()
 
         setGenres(genres)
     }, [animes])

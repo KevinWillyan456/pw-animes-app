@@ -37,6 +37,21 @@
     height: auto;
     border-radius: 10px;
 }
+.anime-content-genre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px;
+}
+.anime-content-genre .genre {
+    padding: 10px 20px;
+    background-color: var(--color-base-5);
+    border-radius: 10px;
+    font-size: 16px;
+    color: var(--color-white);
+}
 .anime-content-title-synopsis {
     background-color: var(--color-base-5);
     padding: 10px 20px;

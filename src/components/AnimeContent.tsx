@@ -26,6 +26,15 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
         StorageService.readFavorites().includes(anime._id)
     )
 
+    const [genres, setGenres] = useState<string[]>([])
+
+    useEffect(() => {
+        const genres = anime.genero.split(', ')
+        genres.sort()
+
+        setGenres(genres)
+    }, [anime])
+
     const gerenciarEpisodioTela = () => {
         const episodios = anime.episodios
         const episodioEncontrado =
@@ -111,6 +120,13 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
                             'https://m.media-amazon.com/images/I/41XsHyZVULL._AC_UF1000,1000_QL80_.jpg'
                     }}
                 ></IonImg>
+            </div>
+            <div className="anime-content-genre">
+                {genres.map((genre) => (
+                    <span key={genre} className="genre">
+                        {genre}
+                    </span>
+                ))}
             </div>
             <h2 className="anime-content-title-synopsis">Sinopse</h2>
             <div className="anime-content-synopsis-content">
