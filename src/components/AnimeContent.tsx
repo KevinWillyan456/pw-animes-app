@@ -3,7 +3,7 @@ import { useState } from 'react'
 import './AnimeContent.css'
 import StorageService from '../utils/StorageService'
 import { IAnime, IEpisodios } from '../types/Anime'
-import { IonIcon, IonImg } from '@ionic/react'
+import { IonIcon, IonImg, IonToast } from '@ionic/react'
 import {
     arrowForwardCircleOutline,
     arrowBackCircleOutline,
@@ -27,6 +27,17 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
     )
 
     const [genres, setGenres] = useState<string[]>([])
+
+    const [toastIsOpen, setToastIsOpen] = useState<boolean>(false)
+    const [toastMessage, setToastMessage] = useState<
+        'Adicionado aos favoritos' | 'Removido dos favoritos'
+    >(isFavorite ? 'Adicionado aos favoritos' : 'Removido dos favoritos')
+
+    useEffect(() => {
+        setToastMessage(
+            isFavorite ? 'Adicionado aos favoritos' : 'Removido dos favoritos'
+        )
+    }, [isFavorite])
 
     useEffect(() => {
         const genres = anime.genero.split(', ')
@@ -92,9 +103,11 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
         if (StorageService.readFavorites().includes(anime._id)) {
             StorageService.removeFavorite(anime._id)
             setIsFavorite(false)
+            setToastIsOpen(true)
         } else {
             StorageService.createFavorite(anime._id)
             setIsFavorite(true)
+            setToastIsOpen(true)
         }
     }
 
@@ -201,6 +214,19 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
                     )
                 })}
             </div>
+
+            <IonToast
+                isOpen={toastIsOpen}
+                message={toastMessage}
+                onDidDismiss={() => setToastIsOpen(false)}
+                duration={3000}
+                icon={isFavorite ? heart : heartOutline}
+                style={{
+                    '--background': 'var(--color-base-3)',
+                    '--color': 'var(--color-white)',
+                    'font-size': '18px',
+                }}
+            ></IonToast>
         </section>
     )
 }
