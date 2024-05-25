@@ -224,7 +224,7 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
                 style={{
                     '--background': 'var(--color-base-3)',
                     '--color': 'var(--color-white)',
-                    'font-size': '18px',
+                    fontSize: '18px',
                 }}
             ></IonToast>
         </section>

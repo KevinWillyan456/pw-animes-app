@@ -44,6 +44,12 @@ const App: React.FC = () => {
         window.location.pathname === '/favorite' ? 'favorite' : 'home'
     )
 
+    window.addEventListener('popstate', () => {
+        setSelectedTab(
+            window.location.pathname === '/favorite' ? 'favorite' : 'home'
+        )
+    })
+
     return (
         <IonApp>
             <IonReactRouter>

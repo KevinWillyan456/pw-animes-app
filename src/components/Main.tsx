@@ -4,6 +4,8 @@ import './Main.css'
 import api from '../services/Api'
 import { IAnime } from '../types/Anime'
 import Loading from './Loading'
+import { useIonRouter } from '@ionic/react'
+import { App } from '@capacitor/app'
 
 export function Main() {
     const [animes, setAnimes] = useState<IAnime[]>([])
@@ -37,6 +39,15 @@ export function Main() {
                 setError(true)
             })
     }, [])
+
+    const ionRouter = useIonRouter()
+    document.addEventListener('ionBackButton', (ev: any) => {
+        ev.detail.register(-1, () => {
+            if (!ionRouter.canGoBack()) {
+                App.exitApp()
+            }
+        })
+    })
 
     return (
         <section className="container-animes">
