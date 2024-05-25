@@ -222,7 +222,7 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
                 duration={3000}
                 icon={isFavorite ? heart : heartOutline}
                 style={{
-                    '--background': 'var(--color-base-3)',
+                    '--background': '#333',
                     '--color': 'var(--color-white)',
                     fontSize: '18px',
                 }}

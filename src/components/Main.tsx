@@ -4,7 +4,13 @@ import './Main.css'
 import api from '../services/Api'
 import { IAnime } from '../types/Anime'
 import Loading from './Loading'
-import { useIonRouter } from '@ionic/react'
+import {
+    IonItem,
+    IonList,
+    IonSelect,
+    IonSelectOption,
+    useIonRouter,
+} from '@ionic/react'
 import { App } from '@capacitor/app'
 
 export function Main() {
@@ -58,18 +64,32 @@ export function Main() {
             ) : animes.length > 0 && !error && animesFetched ? (
                 <section className="genre-section">
                     <section className="genre-filter">
-                        <select
-                            name="genre"
-                            id="genre"
-                            onChange={(e) => setGenre(e.target.value)}
-                        >
-                            <option value="">Todos</option>
-                            {genres.map((genre) => (
-                                <option key={genre} value={genre}>
-                                    {genre}
-                                </option>
-                            ))}
-                        </select>
+                        <IonList>
+                            <IonItem>
+                                <IonSelect
+                                    aria-label="Select genre"
+                                    interface="action-sheet"
+                                    placeholder="Selecione um gênero"
+                                    onIonChange={(e) =>
+                                        setGenre(e.detail.value)
+                                    }
+                                    value={genre}
+                                >
+                                    <IonSelectOption value="">
+                                        Tudo
+                                    </IonSelectOption>
+
+                                    {genres.map((genre) => (
+                                        <IonSelectOption
+                                            key={genre}
+                                            value={genre}
+                                        >
+                                            {genre}
+                                        </IonSelectOption>
+                                    ))}
+                                </IonSelect>
+                            </IonItem>
+                        </IonList>
                     </section>
 
                     {animes
