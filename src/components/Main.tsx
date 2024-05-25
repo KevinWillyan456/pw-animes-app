@@ -10,6 +10,7 @@ export function Main() {
     const [animesFetched, setAnimesFetched] = useState<boolean>(false)
     const [error, setError] = useState<boolean>(false)
     const [genres, setGenres] = useState<string[]>([])
+    const [genre, setGenre] = useState<string>('')
 
     useEffect(() => {
         const genres = [
@@ -42,34 +43,38 @@ export function Main() {
                     <Loading />
                 </div>
             ) : animes.length > 0 && !error && animesFetched ? (
-                genres.length > 0 &&
-                genres.map((genre) => (
-                    <section key={genre} className="genre-section">
-                        <h1
-                            style={{
-                                width: '100%',
-                                gridColumn: '1 / -1',
-                                marginBottom: '10px',
-                            }}
+                <section className="genre-section">
+                    <section className="genre-filter">
+                        <select
+                            name="genre"
+                            id="genre"
+                            onChange={(e) => setGenre(e.target.value)}
                         >
-                            {genre}
-                        </h1>
-
-                        {animes
-                            .filter((anime) => anime.genero.includes(genre))
-                            .map((anime: IAnime, i) => (
-                                <Card
-                                    key={anime._id}
-                                    anime={anime}
-                                    style={
-                                        {
-                                            '--delay': `${`${i * 80}`}ms`,
-                                        } as React.CSSProperties
-                                    }
-                                />
+                            <option value="">Todos</option>
+                            {genres.map((genre) => (
+                                <option key={genre} value={genre}>
+                                    {genre}
+                                </option>
                             ))}
+                        </select>
                     </section>
-                ))
+
+                    {animes
+                        .filter((anime) => {
+                            return genre === '' || anime.genero.includes(genre)
+                        })
+                        .map((anime: IAnime, i) => (
+                            <Card
+                                key={anime._id}
+                                anime={anime}
+                                style={
+                                    {
+                                        '--delay': `${`${i * 80}`}ms`,
+                                    } as React.CSSProperties
+                                }
+                            />
+                        ))}
+                </section>
             ) : (
                 <div className="container-error">
                     <h1 className="error">Erro ao comunicar com o servidor</h1>
