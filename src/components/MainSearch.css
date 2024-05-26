@@ -26,6 +26,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px;
 }
 .container-error-search .error {
     color: var(--color-white);
