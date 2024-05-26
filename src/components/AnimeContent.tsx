@@ -50,10 +50,13 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
         const episodios = anime.episodios
         const episodioEncontrado =
             episodios.find(
-                (episodio: IEpisodios) => episodio.episodioNumero == episode
+                (episodio: IEpisodios | undefined) =>
+                    episodio?.episodioNumero == episode
             ) || episodios[0]
         if (loadRef.current) {
-            loadRef.current.innerHTML = `<iframe src="https://drive.google.com/file/d/${episodioEncontrado.episodioUrl}/preview" width="640" height="480" allow="autoplay" allowfullscreen="allowfullscreean"></iframe>`
+            loadRef.current.innerHTML = episodioEncontrado?.episodioUrl
+                ? `<iframe src="https://drive.google.com/file/d/${episodioEncontrado?.episodioUrl}/preview" width="640" height="480" allow="autoplay" allowfullscreen="allowfullscreean"></iframe>`
+                : '<h2 class="not-found-episode">Este episódio não está disponível</h2>'
 
             if (!isNaN(episode) && episode < 10) {
                 const formattedEpisode = episode.toString().padStart(2, '0')
@@ -61,20 +64,22 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
                     episodeIndicatorRef.current.textContent = `EP ${formattedEpisode}`
             } else {
                 if (episodeIndicatorRef.current)
-                    episodeIndicatorRef.current.textContent = `EP ${episode}`
+                    episodeIndicatorRef.current.textContent = `EP ${
+                        episode || 0
+                    }`
             }
         }
     }
 
-    const gerenciarEpisodioButton = (episodio: IEpisodios) => {
-        setEpisode(episodio.episodioNumero)
+    const gerenciarEpisodioButton = (episodio: IEpisodios | undefined) => {
+        setEpisode(episodio?.episodioNumero)
         setIndexEpisode(
             anime.episodios.findIndex(
-                (objeto: IEpisodios) =>
-                    objeto.episodioNumero === episodio.episodioNumero
+                (objeto: IEpisodios | undefined) =>
+                    objeto?.episodioNumero === episodio?.episodioNumero
             )
         )
-        setSelectedEpisode(episodio.episodioNumero)
+        setSelectedEpisode(episodio?.episodioNumero || 1)
     }
 
     useEffect(() => {
@@ -83,7 +88,7 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
     }, [episode])
 
     useEffect(() => {
-        setEpisode(anime.episodios[indexEpisode].episodioNumero)
+        setEpisode(anime.episodios[indexEpisode]?.episodioNumero)
         StorageService.create(anime._id, indexEpisode)
     }, [indexEpisode])
 
@@ -171,7 +176,9 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
 
             <div className="actionButtons">
                 <button
-                    className={`prev ${indexEpisode <= 0 ? 'forbidden' : ''}`}
+                    className={`prev ${
+                        indexEpisode <= 0 || !episode ? 'forbidden' : ''
+                    }`}
                     onClick={handlePreviousEpisode}
                     disabled={indexEpisode === 0}
                 >
@@ -187,7 +194,9 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
                 </button>
                 <button
                     className={`next ${
-                        indexEpisode === totalEpisodes - 1 ? 'forbidden' : ''
+                        indexEpisode === totalEpisodes - 1 || !episode
+                            ? 'forbidden'
+                            : ''
                     }`}
                     onClick={handleNextEpisode}
                     disabled={indexEpisode === totalEpisodes - 1}
@@ -198,21 +207,31 @@ export function AnimeContent({ anime }: { anime: IAnime }) {
             </div>
 
             <div className="list-episodes">
-                {anime.episodios.map((episodio: IEpisodios) => {
-                    return (
-                        <button
-                            key={episodio._id}
-                            className={
-                                episodio.episodioNumero === selectedEpisode
-                                    ? 'btn-episode selected'
-                                    : 'btn-episode'
-                            }
-                            onClick={() => gerenciarEpisodioButton(episodio)}
-                        >
-                            {`EP ${episodio.episodioNumero}`}
-                        </button>
-                    )
-                })}
+                {anime.episodios.length > 0 ? (
+                    anime.episodios.map((episodio: IEpisodios | undefined) => {
+                        return (
+                            <button
+                                key={episodio?._id}
+                                className={
+                                    episodio?.episodioNumero === selectedEpisode
+                                        ? 'btn-episode selected'
+                                        : 'btn-episode'
+                                }
+                                onClick={() =>
+                                    gerenciarEpisodioButton(
+                                        episodio || undefined
+                                    )
+                                }
+                            >
+                                {`EP ${episodio?.episodioNumero || 1}`}
+                            </button>
+                        )
+                    })
+                ) : (
+                    <h3 className="not-have-episodes">
+                        Não há episódios disponíveis
+                    </h3>
+                )}
             </div>
 
             <IonToast

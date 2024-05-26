@@ -104,6 +104,12 @@
     max-width: 1000px;
     max-height: calc(1000px * 9 / 16);
 }
+.view-episode .not-found-episode {
+    width: 90vw;
+    max-width: 1000px;
+    text-align: center;
+    color: var(--color-white);
+}
 .list-episodes {
     width: calc(100% - 40px);
     max-width: 500px;
@@ -135,6 +141,11 @@
 }
 .list-episodes .btn-episode.selected {
     background-color: var(--color-base-2);
+}
+.list-episodes .not-have-episodes {
+    width: 100%;
+    text-align: center;
+    color: var(--color-white);
 }
 .actionButtons {
     width: 100%;
