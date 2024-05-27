@@ -51,6 +51,16 @@ Navegue até a pasta `android/app/src/main/res/values` do seu projeto Ionic e ab
       <item name="android:windowFullscreen">true</item>
    ```
 
+### Comandos de Build APK
+
+   ```sh
+   cd android/
+   ```
+
+   ```sh
+   ./gradlew assembleDebug
+   ```
+
 ## Capturas de Tela
 
 ![tela-inicial](https://github.com/KevinWillyan456/pw-animes-app/assets/115520107/5d628d5d-2152-4c81-9162-28046c2c7faf)
