@@ -38,7 +38,7 @@ Em breve.
 ### Construir a Capa do Aplicativo
 
    ```sh
-   npm install @capacitor/assets --save-dev && npx @capacitor/assets generate --iconBackgroundColor '#062720' --splashBackgroundColor '#062720' && npm uninstall @capacitor/assets && npm run aplication:build
+   npm install @capacitor/assets --save-dev && npx @capacitor/assets generate --iconBackgroundColor '#062720' --splashBackgroundColor '#062720' && npm uninstall @capacitor/assets && npm run app:build
    ```
 
 ### Consertar o Visual

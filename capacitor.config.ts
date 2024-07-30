@@ -1,12 +1,12 @@
-import { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from '@capacitor/cli'
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'Pw Animes',
-  webDir: 'dist',
-  server: {
-    androidScheme: 'https'
-  }
-};
+    appId: 'com.purchaseway.animes.app',
+    appName: 'Pw Animes',
+    webDir: 'dist',
+    server: {
+        androidScheme: 'https',
+    },
+}
 
-export default config;
+export default config
